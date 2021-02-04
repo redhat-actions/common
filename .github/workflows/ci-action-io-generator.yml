@@ -50,6 +50,10 @@ jobs:
           LINES=$(wc -l ${{ env.TEST_FILE }} | awk '{ print $1 }')
           (( LINES > 30 ))
 
+      - name: Debug failed test
+        if: failure()
+        run: cat ${{ env.TEST_FILE }}
+
       - name: Clean up again
         run: rm -v ${{ env.TEST_FILE }}
 
