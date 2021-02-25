@@ -2,7 +2,7 @@ name: 'Get Commit Data'
 description: 'Derive additional commit data for the current workflow'
 inputs:
   working_directory:
-    description: Working directory to use for relative path to fetch commit data
+    description: Working directory in which to run git commands. Defaults to current working directory.
     required: false
 outputs:
   branch:

@@ -15,13 +15,11 @@ Or, you may want to automatically create a GitHub release corresponding to each 
 
 Secondly, I often want to get the short commit SHA (conventionally the first 7 characters).
 
-This action takes no input, it just needs the git metadata which it gets from disk.
-
 ## Inputs
 
 | Name | Description | Default |
 | ---- | ---- | ---- |
-| working_directory | Working directory to use for relative path to fetch commit data. | Defaults to current context |
+| working_directory | Working directory in which to run `git` commands. | Defaults to current working directory. |
 
 ## Outputs
 

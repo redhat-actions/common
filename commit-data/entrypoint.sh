@@ -3,8 +3,8 @@
 set -e -o pipefail
 
 if [[ $INPUT_WORKING_DIRECTORY ]]; then
-    cd $INPUT_WORKING_DIRECTORY
     echo "Working directory is $INPUT_WORKING_DIRECTORY"
+    cd $INPUT_WORKING_DIRECTORY
 fi
 
 # log the latest commit data
