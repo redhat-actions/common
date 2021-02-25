@@ -2,6 +2,14 @@
 
 set -e -o pipefail
 
+if [[ $INPUT_WORKING_DIRECTORY ]]; then
+    cd $INPUT_WORKING_DIRECTORY
+    echo "Working directory is $INPUT_WORKING_DIRECTORY"
+fi
+
+# log the latest commit data
+git log -1
+
 commit_sha=$(git rev-parse HEAD)
 echo "HEAD commit SHA is $commit_sha"
 
