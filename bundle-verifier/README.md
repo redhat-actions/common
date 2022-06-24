@@ -16,7 +16,7 @@ There is no reason that this action can't be used by projects other than GitHub 
 
 ## Inputs
 
-See [this repository's workflow](./.github/workflows/verify-verifier.yml) for an example.
+See [this repository's workflow](../.github/workflows/verify-verifier.yml) for an example.
 
 | Input | Description |
 | ---   | --- |
