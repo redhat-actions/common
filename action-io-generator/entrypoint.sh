@@ -6,6 +6,8 @@ set -o pipefail
 timestamp() {
   date +"%s"
 }
+echp "npm version:"
+npm version
 
 npm ci
 
