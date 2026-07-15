@@ -1,6 +1,6 @@
 {
   "name": "@redhat-actions/webpack-config",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Webpack config for Red Hat GitHub Actions",
   "keywords": [
     "webpack",
@@ -13,8 +13,7 @@
   "author": "tetchell@redhat.com",
   "license": "MIT",
   "peerDependencies": {
-    "@types/terser-webpack-plugin": ">= 5",
-    "ts-loader": ">= 8",
+    "ts-loader": ">= 9",
     "webpack": ">= 5",
     "webpack-cli": ">= 4"
   }
