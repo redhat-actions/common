@@ -17,4 +17,4 @@ Please include:
 
 ## Response
 
-We will acknowledge receipt of your report within 3 business days and aim to provide a detailed response within 10 business days, including an assessment and planned timeline for a fix.
+We will review your report and respond with an assessment and planned timeline for a fix.
