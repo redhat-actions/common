@@ -1,10 +1,10 @@
-#!/bin/sh -l
+#!/bin/bash -l
 
-set -e -o pipefail
+set -euo pipefail
 
-if [[ $INPUT_WORKING_DIRECTORY ]]; then
+if [[ -n "${INPUT_WORKING_DIRECTORY:-}" ]]; then
     echo "Working directory is $INPUT_WORKING_DIRECTORY"
-    cd $INPUT_WORKING_DIRECTORY
+    cd "$INPUT_WORKING_DIRECTORY"
 fi
 
 # log the latest commit data
@@ -13,7 +13,7 @@ git log -1
 commit_sha=$(git rev-parse HEAD)
 echo "HEAD commit SHA is $commit_sha"
 
-short_sha=$(echo $commit_sha | cut -c -7)
+short_sha=$(echo "$commit_sha" | cut -c -7)
 echo "Short commit SHA is $short_sha"
 
 branch=$(git branch --show-current)
@@ -28,12 +28,14 @@ if [ -n "${GITHUB_HEAD_REF:-}" ]; then
     echo "This workflow is a PR from ${GITHUB_HEAD_REF} targeting ${GITHUB_BASE_REF}"
 else
     is_pr=false
+    pr_head=""
+    pr_base=""
     echo "Not a PR workflow"
 fi
 
 tags=$(git tag --points-at HEAD | xargs)
-tag=$(echo $tags | awk '{ print $1 }')
-tags_count=$(echo $tags | wc -w | xargs)
+tag=$(echo "$tags" | awk '{ print $1 }')
+tags_count=$(echo "$tags" | wc -w | xargs)
 
 if [ -z "$tags" ]; then
     echo "No tags point to this commit"
@@ -43,11 +45,11 @@ else
     echo "$tags_count tags point to this commit: $tags"
 fi
 
-echo "::set-output name=branch::${branch}"
-echo "::set-output name=is_pr::${is_pr}"
-echo "::set-output name=pr_head::${pr_head}"
-echo "::set-output name=pr_base::${pr_base}"
-echo "::set-output name=short_sha::$short_sha"
-echo "::set-output name=tag::$tag"
-echo "::set-output name=tags::$tags"
-echo "::set-output name=tag_count::$tags_count"
+echo "branch=${branch}" >> "$GITHUB_OUTPUT"
+echo "is_pr=${is_pr}" >> "$GITHUB_OUTPUT"
+echo "pr_head=${pr_head}" >> "$GITHUB_OUTPUT"
+echo "pr_base=${pr_base}" >> "$GITHUB_OUTPUT"
+echo "short_sha=${short_sha}" >> "$GITHUB_OUTPUT"
+echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+echo "tags=${tags}" >> "$GITHUB_OUTPUT"
+echo "tag_count=${tags_count}" >> "$GITHUB_OUTPUT"
