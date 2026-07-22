@@ -25,6 +25,12 @@ export enum Inputs {
      */
     KEBAB_INPUT = "kebab-input",
     /**
+     * Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+     * Required: false
+     * Default: None.
+     */
+    LONG_DESCRIPTION = "long-description",
+    /**
      * Here's an input with a long description.
      * It's even got multiple lines. I hope this doesn't mess up
      * the generator too badly.

@@ -3,7 +3,13 @@
   "compilerOptions": {
     "rootDir": "src/",
     "outDir": "out/",
-    "declaration": true
+    "declaration": true,
+    "target": "es2024",
+    "lib": ["es2024"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "types": ["node"]
   },
   "include": [
     "src/"
