@@ -11,6 +11,9 @@ on:
       - 'action-io-generator/**'
       - '.github/workflows/ci-action-io-generator.yml'
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
