@@ -4,5 +4,7 @@ module.exports = {
     ],
     rules: {
         "no-console": 0,
+        "@typescript-eslint/semi": 0,
+        "semi": [ "error" ],
     },
 };

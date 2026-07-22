@@ -9,8 +9,20 @@ updates:
     directory: "/action-io-generator"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "typescript"
+        versions: [">=7.0.0"]
 
   - package-ecosystem: "npm"
     directory: "/bundle-verifier"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "@actions/core"
+        versions: [">=3.0.0"]
+      - dependency-name: "@actions/exec"
+        versions: [">=3.0.0"]
+      - dependency-name: "@actions/io"
+        versions: [">=3.0.0"]
+      - dependency-name: "typescript"
+        versions: [">=7.0.0"]
