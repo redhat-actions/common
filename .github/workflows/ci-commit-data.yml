@@ -11,7 +11,7 @@ jobs:
       tag: ${{ steps.commit_data.outputs.tag }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: Run commit-data
         id: commit_data
