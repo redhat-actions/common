@@ -27,6 +27,9 @@ inputs:
     description: >-
       This is a multiline but folded string.
       Its line break will be removed when the string is read from this file.
+  long-description:
+    required: false
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 outputs:
   result:
     description: The result output.
