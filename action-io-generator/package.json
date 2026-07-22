@@ -30,7 +30,7 @@
     "@redhat-actions/webpack-config": "^1.1.0",
     "@types/js-yaml": "^4",
     "@types/minimist": "^1.2.1",
-    "@types/node": "^24",
+    "@types/node": "^26",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "eslint": "^8",
