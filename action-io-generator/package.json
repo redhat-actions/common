@@ -5,15 +5,16 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tetchel/action-io-generator.git"
+    "url": "git+https://github.com/redhat-actions/common.git",
+    "directory": "action-io-generator"
   },
   "bin": "bin.js",
   "author": "tetchell@redhat.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tetchel/action-io-generator/issues"
+    "url": "https://github.com/redhat-actions/common/issues"
   },
-  "homepage": "https://github.com/tetchel/action-io-generator#readme",
+  "homepage": "https://github.com/redhat-actions/common/tree/main/action-io-generator#readme",
   "scripts": {
     "compile": "tsc -p .",
     "bundle": "npx webpack --mode=production && cp -v bin.js dist/",

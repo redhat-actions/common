@@ -2,8 +2,8 @@
   "name": "bundle-verifier",
   "version": "0.0.1",
   "description": "GitHub Action to verify the committed bundle is up-to-date with the source",
-  "main": "index.js",
-  "author": "",
+  "private": true,
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "compile": "tsc -p .",
