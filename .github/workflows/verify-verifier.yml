@@ -1,7 +1,18 @@
 name: bundle-verifier CI
 on:
   push:
+    branches: [main]
+    paths:
+      - 'bundle-verifier/**'
+      - '.github/workflows/verify-verifier.yml'
   pull_request:
+    paths:
+      - 'bundle-verifier/**'
+      - '.github/workflows/verify-verifier.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   BUNDLE_FILE: "dist/index.js"
@@ -15,6 +26,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v7
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 24
 
     - name: Install
       working-directory: ${{ env.WORKDIR }}
