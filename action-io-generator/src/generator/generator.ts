@@ -23,7 +23,7 @@ export default async function generator(actionYmlFile: string, outFile: string, 
     let modifyingProm: Promise<unknown> | undefined;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    fs.watch(actionYmlFile, async (_event: string, _filename: string) => {
+    fs.watch(actionYmlFile, async (_event: string, _filename: string | null) => {
         logger.log(`${actionYmlFile} changed`);
 
         if (modifyingProm) {
@@ -59,11 +59,7 @@ async function generateInner(actionYmlFile: string, outFile: string): Promise<vo
 async function loadActionYml(actionYmlFile: string): Promise<ActionYml> {
     const actionYmlContents = (await promisify(fs.readFile)(actionYmlFile)).toString();
 
-    const actionYmlRaw = jsYaml.safeLoad(actionYmlContents, {
-        onWarning: (e) => {
-            logger.log(`Warning loading ${actionYmlFile}: `, e);
-        },
-    });
+    const actionYmlRaw = jsYaml.load(actionYmlContents);
 
     if (actionYmlRaw == null) {
         throw new Error(`Action yaml load returned ${actionYmlRaw}`);
