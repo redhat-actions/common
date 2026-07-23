@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+## [v2.1.0] - 2026-07-28
+
+### Added
+
+- New podman-entitlement action.
+
 ### Security
 
 - Add CODEOWNERS and enforce least-privilege permissions in CI workflows.
