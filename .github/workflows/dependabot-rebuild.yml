@@ -1,0 +1,65 @@
+name: Rebuild Dependabot Bundles
+on:
+  push:
+    branches:
+      - 'dependabot/npm_and_yarn/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    name: Rebuild Bundle
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Determine component directory
+        id: component
+        run: |
+          # Branch: dependabot/npm_and_yarn/<component>/<dep>-<ver>
+          COMPONENT=$(echo "${GITHUB_REF_NAME}" | cut -d/ -f3)
+          echo "dir=${COMPONENT}" >> "${GITHUB_OUTPUT}"
+
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Check for bundle script
+        id: check
+        run: |
+          SCRIPT=$(jq -r '.scripts.bundle // empty' "${{ steps.component.outputs.dir }}/package.json")
+          if [ -n "${SCRIPT}" ]; then
+            echo "has_bundle=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "has_bundle=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - uses: actions/setup-node@v7
+        if: steps.check.outputs.has_bundle == 'true'
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        if: steps.check.outputs.has_bundle == 'true'
+        working-directory: ${{ steps.component.outputs.dir }}
+        run: npm ci
+
+      - name: Rebuild bundle
+        if: steps.check.outputs.has_bundle == 'true'
+        working-directory: ${{ steps.component.outputs.dir }}
+        run: npm run bundle
+
+      - name: Commit and push updated bundle
+        if: steps.check.outputs.has_bundle == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.component.outputs.dir }}/dist/"
+          git diff --staged --quiet || {
+            git commit -m "Rebuild ${{ steps.component.outputs.dir }} bundle"
+            git push
+          }
