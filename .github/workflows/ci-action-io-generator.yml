@@ -3,13 +3,9 @@ name: action-io-generator CI
 on:
   push:
     branches: [main]
-    paths:
-      - 'action-io-generator/**'
-      - '.github/workflows/ci-action-io-generator.yml'
+    paths-ignore: ['**.md']
   pull_request:
-    paths:
-      - 'action-io-generator/**'
-      - '.github/workflows/ci-action-io-generator.yml'
+    paths-ignore: ['**.md']
 
 permissions:
   contents: read
